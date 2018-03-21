@@ -41,12 +41,12 @@ jobs:
       - run:
           name: install open ssl
           command: sudo apt-get install openssh-server
-      #- run:
-      #    name: Test existance of .ssh directory
-      #    command: mkdir -p "/home/circleci/.ssh"
-      #- run:
-      #    name: Deploy if tests pass and branch is Master
-      #    command: ssh -o StrictHostKeyChecking=no deploy@34.253.173.230 "./deploy_currencyconverter"
+      - run:
+          name: Test existance of .ssh directory
+          command: mkdir -p "/home/circleci/.ssh"
+      - run:
+          name: Deploy if tests pass and branch is Master
+          command: ssh -o StrictHostKeyChecking=no deploy@34.253.173.230 "./deploy_dividendcalculator"
 
 workflows:
   version: 2

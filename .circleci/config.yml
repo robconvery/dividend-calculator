@@ -1,0 +1,66 @@
+version: 2
+
+dependencies:
+  override:
+    - yarn
+
+test:
+  override:
+    - yarn test
+
+jobs:
+
+  build-test:
+
+    docker:
+      - image: circleci/php:7.1-node-browsers
+
+    working_directory: ~/laravel
+
+    steps:
+
+      - checkout
+
+      - run: sudo apt-get install -y libsqlite3-dev zlib1g-dev
+      - run: sudo docker-php-ext-install zip
+      - run: sudo composer self-update
+      - run: cp .env.example .env
+      - run: composer install -n --prefer-dist
+      - run: php artisan key:generate
+      - run: ./vendor/bin/phpcs --standard=PSR2 app tests
+      - run: ./vendor/bin/phpunit
+
+  deploy-prod:
+
+    docker:
+      - image: circleci/php:7.1-node-browsers
+
+    working_directory: /home/circleci
+
+    steps:
+      - run:
+          name: install open ssl
+          command: sudo apt-get install openssh-server
+      #- run:
+      #    name: Test existance of .ssh directory
+      #    command: mkdir -p "/home/circleci/.ssh"
+      #- run:
+      #    name: Deploy if tests pass and branch is Master
+      #    command: ssh -o StrictHostKeyChecking=no deploy@34.253.173.230 "./deploy_currencyconverter"
+
+workflows:
+  version: 2
+  build-deploy:
+    jobs:
+      - build-test:
+          filters:
+            branches:
+              only:
+                - master
+                - develop
+      - deploy-prod:
+          requires:
+            - build-test
+          filters:
+            branches:
+              only: master

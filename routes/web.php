@@ -12,5 +12,9 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('dividend');
+});
+
+Route::post('/', function () {
+    return redirect('/');
 });

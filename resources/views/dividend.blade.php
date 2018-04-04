@@ -10,7 +10,7 @@
 
         <div class="form-group">
 
-            <label for="totalTax">Total Tax Allowance</label>
+            <label for="totalTax">Monthly Total Tax Allowance</label>
             <input type="number" type="number" step="0.01" class="form-control col-3" id="totalTax" aria-describedby="totalTax" placeholder="Total Tax" value="680.33" min="0">
             <small class="form-text text-muted">
                 This is the total tax allowance for the month.

@@ -1,5 +1,23 @@
 var myTimer;
 
+function deselectAll() {
+
+    var element = document.activeElement;
+
+    if (element && /INPUT|TEXTAREA/i.test(element.tagName)) {
+        if ('selectionStart' in element) {
+            element.selectionEnd = element.selectionStart;
+        }
+        element.blur();
+    }
+
+    if (window.getSelection) { // All browsers, except IE <=8
+        window.getSelection().removeAllRanges();
+    } else if (document.selection) { // IE <=8
+        document.selection.empty();
+    }
+}
+
 /**
  * run when a payment input is
  * updated
@@ -112,6 +130,31 @@ function updateTableRows() {
 
 $( document ).ready(function() {
 
+    $('.copy-btn').click(function (e) {
+
+        var p = $(e.target).closest('.input-group');
+        var copyText = $('input', p)[0];
+
+        /* copy value to clipboard */
+        copyText.select();
+        document.execCommand("copy");
+
+        /*display tooltip*/
+        $(".tooltip").tooltip("hide");
+        $('input', p)
+            .attr('title', 'Copied to clipboard!')
+            .tooltip('show');
+
+        /*remove selection from copied input*/
+        $(e.target).focus();
+
+        /*remove tooltip*/
+        setTimeout(function () {
+            $('input', p).tooltip('dispose');
+        }, 2000);
+
+    });
+
     $('[data-toggle="tooltip"]').tooltip();
 
     $('#add_payment').click(function (e) {
@@ -166,3 +209,4 @@ $( document ).ready(function() {
             }
         });
 });
+

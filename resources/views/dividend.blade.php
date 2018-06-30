@@ -54,10 +54,31 @@
                         <input type="number" name="payment_amount[0]" step="0.01" class="payment-amount form-control mr-2" aria-describedby="" placeholder="Payment Amount">
                     </td>
                     <td>
-                        <input type="number" name="dividend_amount[0]" step="0.01" class="dividend-amount form-control mr-2" aria-describedby="" placeholder="Dividend Amount" value="0" disabled>
+
+                        <div class="input-group">
+
+                            <input type="number" name="dividend_amount[0]" step="0.01" class="dividend-amount form-control" aria-describedby="" placeholder="Dividend Amount" value="0" readonly>
+                            <div class="input-group-append">
+                                <a href="javascript:void(0);" class="input-group-text copy-btn">
+                                    <i class="fa fa-copy"></i>
+                                </a>
+                            </div>
+
+                        </div>
+
                     </td>
                     <td>
-                        <input type="number" name="paye_amount[0]" step="0.01" class="paye-amount form-control mr-2" aria-describedby="" value="1000" placeholder="PAYE Amount" disabled>
+
+                        <div class="input-group">
+
+                            <input type="number" name="paye_amount[0]" step="0.01" class="paye-amount form-control" aria-describedby="" value="1000" placeholder="PAYE Amount" readonly>
+                            <div class="input-group-append">
+                                <a href="javascript:void(0);" class="input-group-text copy-btn" >
+                                    <i class="fa fa-copy"></i>
+                                </a>
+                            </div>
+
+                        </div>
                     </td>
                 </tr>
             </tbody>

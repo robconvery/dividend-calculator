@@ -1,12 +1,14 @@
 
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
-@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+/*@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");*/
+@import "node_modules/font-awesome/scss/font-awesome.scss";
 
 // Variables
 @import "variables";
 
 // Bootstrap
+/*$icon-font-path: '/css/fonts/';*/
 @import '~bootstrap/scss/bootstrap';
 
 .navbar-laravel {
